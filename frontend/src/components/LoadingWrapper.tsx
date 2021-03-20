@@ -13,7 +13,7 @@ interface ILoadingWrapperProps {
 
 function LoadingWrapper({ children, isLoading, loadingHeight, spinningIndicatorSize, error }: ILoadingWrapperProps) {
   function renderError(error: string) {
-    return <span>{error}</span>;
+    return <ErrorText>{error}</ErrorText>;
   }
 
   return (
@@ -42,6 +42,7 @@ const LoadingInfoContainer = styled.div<ILoadingInfoContainer>`
   left: 50%;
   margin-top: ${(props) => (props.loadingHeight ? props.loadingHeight / 2 : 0)}px;
   transform: translateX(-50%);
+  z-index: 10;
 `;
 
 interface IChildrenContainer {
@@ -49,6 +50,11 @@ interface IChildrenContainer {
 }
 const ChildrenContainer = styled.div<IChildrenContainer>`
   filter: ${(props) => (props.blur ? 'blur(2px)' : 'unset')};
+`;
+
+const ErrorText = styled.p`
+  text-align: center;
+  font-size: 18px;
 `;
 
 export default LoadingWrapper;

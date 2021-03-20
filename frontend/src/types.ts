@@ -5,6 +5,12 @@ export interface IGithubUser {
   avatar_url: string | null;
 }
 
+export interface IGithubRepo {
+  id: number;
+  name: string;
+  html_url: string;
+  stargazers_count: number;
+}
 export interface IFetchedData<T> {
   data: T | null;
   isLoading: boolean;

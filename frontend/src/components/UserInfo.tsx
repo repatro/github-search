@@ -34,7 +34,7 @@ const Avatar = styled.img`
   box-shadow: 0 0 1pt 1pt black;
 `;
 
-const Bio = styled.div`
+const Bio = styled.p`
   margin-top: 20px;
   color: #7b7c7e;
 `;
