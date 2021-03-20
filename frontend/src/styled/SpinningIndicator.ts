@@ -13,8 +13,8 @@ interface ISpinningIndicator {
   size?: number;
 }
 const SpinningIndicator = styled.div<ISpinningIndicator>`
-  width: 14px;
-  height: 14px;
+  width: ${(props) => props.size || 14}px;
+  height: ${(props) => props.size || 14}px;
   border-top: 3px solid #8888ff;
   border-right: 3px solid #8888ff;
   border-radius: 50%;

@@ -6,10 +6,12 @@ import App from './App';
 import './index.css';
 
 const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #fbfcfe;
+  }
   * {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.05em;
-    background-color: #fbfcfe;
   }
 `;
 

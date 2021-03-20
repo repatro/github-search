@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { getGithubUser } from './API';
 import { IFetchedData, IGithubUser } from './types';
 import UserSearch from './components/UserSearch';
+import UserInfo from './components/UserInfo';
+import LoadingWrapper from './components/LoadingWrapper';
 
 function App() {
   const [githubUserData, setGithubUserData] = useState<IFetchedData<IGithubUser>>({ data: null, isLoading: false });
@@ -19,30 +21,49 @@ function App() {
   }
 
   return (
-    <AppWrapper>
-      <UserSearchContainer>
-        <UserSearch onSearch={handleSearch} isLoading={githubUserData.isLoading} />
-      </UserSearchContainer>
-
-      {JSON.stringify(githubUserData)}
-    </AppWrapper>
+    <div>
+      <HeaderSection>
+        <NarrowCentered>
+          <UserSearch onSearch={handleSearch} isLoading={githubUserData.isLoading} />
+        </NarrowCentered>
+      </HeaderSection>
+      <ContentSection>
+        <NarrowCentered>
+          <UserInfoContainer>
+            <LoadingWrapper
+              isLoading={githubUserData.isLoading}
+              error={githubUserData.error}
+              loadingHeight={80}
+              spinningIndicatorSize={40}
+            >
+              {githubUserData.data && <UserInfo user={githubUserData.data} />}
+            </LoadingWrapper>
+          </UserInfoContainer>
+        </NarrowCentered>
+      </ContentSection>
+    </div>
   );
 }
 
-const AppWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+const NarrowCentered = styled.div`
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
 `;
 
-const UserSearchContainer = styled.div`
+const HeaderSection = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: white;
-  width: 100%;
-  height: 12vh;
-  box-shadow: 0 0 2pt 1pt #d4d4d4;
+  box-shadow: 0 0 3pt 2pt #e7e7e7;
+`;
+
+const ContentSection = styled.div`
+  display: flex;
+`;
+
+const UserInfoContainer = styled.div`
+  margin-right: 50px;
 `;
 
 export default App;

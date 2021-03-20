@@ -8,6 +8,8 @@ export async function getGithubUser(user: string): Promise<IGithubUser> {
     const fetchedUser: IGithubUser = (await response.json()).data;
     return fetchedUser;
   } else {
-    return Promise.reject(new Error(response.status === 404 ? 'Not found' : 'Fetching user failed'));
+    return Promise.reject(
+      new Error(response.status === 404 ? 'User not found' : 'Fetching user failed. Please try again')
+    );
   }
 }

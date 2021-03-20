@@ -18,7 +18,7 @@ function TextInput({ value, onChange, icon: Icon, fontSize = 16, fluid }: ITextI
   }
 
   function handleFocusInput() {
-    inputRef.current && inputRef.current.focus();
+    inputRef.current?.focus();
   }
 
   return (
