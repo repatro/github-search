@@ -20,9 +20,17 @@ function UserSearch({ isLoading, onSearch }: IUserSearch) {
   }
 
   const isButtonDisabled = userInput.trim().length === 0 || isLoading;
+
   return (
     <Container>
-      <TextInput value={userInput} icon={Search} fontSize={18} fluid onChange={setUserInput} />
+      <TextInput
+        value={userInput}
+        icon={Search}
+        fontSize={18}
+        fluid
+        onChange={setUserInput}
+        onEnterPress={handleSearch}
+      />
       <SearchButton disabled={isButtonDisabled} onClick={handleSearch}>
         {isLoading ? <SpinningIndicator /> : 'Search'}
       </SearchButton>

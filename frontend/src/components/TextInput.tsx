@@ -1,20 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, KeyboardEvent } from 'react';
 import styled from 'styled-components';
 import { StyledIcon } from '@styled-icons/styled-icon';
 
 interface ITextInputProps {
   value: string;
   onChange(value: string): void;
+  onEnterPress?: () => void;
   icon?: StyledIcon;
   fontSize?: number;
   fluid?: boolean;
 }
 
-function TextInput({ value, onChange, icon: Icon, fontSize = 16, fluid }: ITextInputProps) {
+function TextInput({ value, onChange, onEnterPress, icon: Icon, fontSize = 16, fluid }: ITextInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleChange({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) {
     onChange(value);
+  }
+
+  function handleKeyPress({ key }: KeyboardEvent) {
+    if (key === 'Enter' && onEnterPress) {
+      onEnterPress();
+    }
   }
 
   function handleFocusInput() {
@@ -24,7 +31,14 @@ function TextInput({ value, onChange, icon: Icon, fontSize = 16, fluid }: ITextI
   return (
     <TextInputContainer fluid={fluid} onClick={handleFocusInput}>
       {Icon && <Icon size={fontSize} />}
-      <Input ref={inputRef} placeholder='Search for users' value={value} onChange={handleChange} fontSize={fontSize} />
+      <Input
+        ref={inputRef}
+        placeholder='Search for users'
+        value={value}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        fontSize={fontSize}
+      />
     </TextInputContainer>
   );
 }
