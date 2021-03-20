@@ -8,10 +8,6 @@ const port = 3001;
 
 app.use(cors());
 
-app.get('/helloWorld', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-
 app.get('/githubUser', async (req: Request, res: Response) => {
   try {
     const foundUser = await getGithubUser(req, res);
@@ -21,9 +17,9 @@ app.get('/githubUser', async (req: Request, res: Response) => {
     });
   } catch (e) {
     console.error(e.message);
-    return res.status(400).json({
+    return res.status(e.isAxiosError ? e.response.status : 500).json({
       status: 'error',
-      error: e.message
+      error: e.isAxiosError ? e.response.statusText : e.message
     });
   }
 });
