@@ -7,7 +7,7 @@
 /*/coverage
 
 # production
-/frontend/build
+/*/build
 
 # misc
 .vscode/*

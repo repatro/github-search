@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express';
 import { getGithubUser, getGithubUserRepos } from './controllers';
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -21,13 +21,11 @@ function getRouteControllerWrapper(getData: (req: Request, res: Response) => Pro
     try {
       const data = await getData(req, res);
       return res.status(200).json({
-        status: 'succes',
         data
       });
     } catch (e) {
       console.error(e.message);
       return res.status(e.isAxiosError ? e.response.status : 500).json({
-        status: 'error',
         error: e.isAxiosError ? e.response.statusText : e.message
       });
     }
