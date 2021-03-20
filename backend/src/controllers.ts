@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import axios from 'axios';
 import { getOr, pick } from 'lodash/fp';
 
-import { IGithubUser, IGithubUserSearch } from './types';
+import { IGithubRepo, IGithubUser, IGithubUserSearch } from './types';
 
 const GITHUB_API_URL = 'https://api.github.com';
 const AUTHORIZATION_HEADER = process.env.GITHUB_TOKEN ? `token ${process.env.GITHUB_TOKEN}` : '';
@@ -10,6 +10,16 @@ const AUTHORIZATION_HEADER = process.env.GITHUB_TOKEN ? `token ${process.env.GIT
 export async function getGithubUser(req: Request, res: Response): Promise<IGithubUser> {
   const queryUser = getUserFromRequest(req);
   return getGithubUserByUsername(await getGithubUsername(queryUser));
+}
+
+export async function getGithubUserRepos(req: Request, res: Response): Promise<Array<IGithubRepo>> {
+  const queryUser = getUserFromRequest(req);
+  const { data: repos } = await axios.get<Array<IGithubRepo>>(`${GITHUB_API_URL}/users/${queryUser}/repos`, {
+    headers: {
+      Authorization: AUTHORIZATION_HEADER
+    }
+  });
+  return repos.map(pick(['id', 'name', 'html_url', 'stargazers_count']));
 }
 
 function getUserFromRequest(req: Request) {

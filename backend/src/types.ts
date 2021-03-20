@@ -10,3 +10,10 @@ export interface IGithubUserSearch {
     login: string;
   }>;
 }
+
+export interface IGithubRepo {
+  id: number;
+  name: string;
+  html_url: string;
+  stargazers_count: number;
+}
