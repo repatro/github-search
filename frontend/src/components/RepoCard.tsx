@@ -8,30 +8,28 @@ interface IRepoCardProps {
 }
 function RepoCard({ repo }: IRepoCardProps) {
   return (
-    <Segment>
-      <Link href={repo.html_url} rel='noreferrer' target='_blank' aria-label='Github repository link'>
-        {repo.name}
-      </Link>
-    </Segment>
+    <SegmentLink href={repo.html_url} rel='noreferrer' target='_blank' aria-label='Github repository link'>
+      {repo.name}
+    </SegmentLink>
   );
 }
 
-const Segment = styled.div`
+const SegmentLink = styled.a`
   display: flex;
   align-items: center;
   padding-left: 20px;
+  margin-bottom: 20px;
   background-color: white;
   height: 70px;
   border-radius: 12px;
   box-shadow: 0 0 6pt 0pt #e7e7e7;
-`;
-
-const Link = styled.a`
+  transition: box-shadow 0.1s linear;
   text-decoration: none;
   color: #458be1;
   font-size: 18px;
+
   :hover {
-    color: #317cd8;
+    box-shadow: 0 0 4pt 0pt #c0bebe;
   }
 `;
 
