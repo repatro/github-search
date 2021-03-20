@@ -29,7 +29,7 @@ function ReposList({ reposData }: IReposListProps) {
   }
 
   return (
-    <div>
+    <section>
       <HeaderText>Top repositories</HeaderText>
       <LoadingWrapper
         isLoading={reposData.isLoading}
@@ -39,7 +39,7 @@ function ReposList({ reposData }: IReposListProps) {
       >
         {!isEmpty(preparedTopRepos) ? renderRepos() : !reposData.isLoading && renderNoReposInfo()}
       </LoadingWrapper>
-    </div>
+    </section>
   );
 }
 

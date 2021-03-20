@@ -29,10 +29,10 @@ function TextInput({ value, onChange, icon: Icon, fontSize = 16, fluid }: ITextI
   );
 }
 
-interface IInput {
+interface IInputProps {
   fontSize: number;
 }
-const Input = styled.input<IInput>`
+const Input = styled.input<IInputProps>`
   flex-grow: 1;
   border: none;
   background-color: transparent;
@@ -44,10 +44,10 @@ const Input = styled.input<IInput>`
   }
 `;
 
-interface ITextInputContainer {
+interface ITextInputContainerProps {
   fluid?: boolean;
 }
-const TextInputContainer = styled.div<ITextInputContainer>`
+const TextInputContainer = styled.div<ITextInputContainerProps>`
   display: flex;
   align-items: center;
   background-color: #eff3f4;

@@ -27,17 +27,17 @@ function LoadingWrapper({ children, isLoading, loadingHeight, spinningIndicatorS
   );
 }
 
-interface IContainer {
+interface IContainerProps {
   height?: number;
 }
-const Container = styled.div<IContainer>`
+const Container = styled.div<IContainerProps>`
   height: ${(props) => (props.height ? `${props.height}px` : 'unset')};
 `;
 
-interface ILoadingInfoContainer {
+interface ILoadingInfoContainerProps {
   loadingHeight?: number;
 }
-const LoadingInfoContainer = styled.div<ILoadingInfoContainer>`
+const LoadingInfoContainer = styled.div<ILoadingInfoContainerProps>`
   position: absolute;
   left: 50%;
   margin-top: ${(props) => (props.loadingHeight ? props.loadingHeight / 2 : 0)}px;
@@ -45,10 +45,10 @@ const LoadingInfoContainer = styled.div<ILoadingInfoContainer>`
   z-index: 10;
 `;
 
-interface IChildrenContainer {
+interface IChildrenContainerProps {
   blur?: boolean;
 }
-const ChildrenContainer = styled.div<IChildrenContainer>`
+const ChildrenContainer = styled.div<IChildrenContainerProps>`
   filter: ${(props) => (props.blur ? 'blur(2px)' : 'unset')};
 `;
 

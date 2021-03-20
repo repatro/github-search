@@ -8,14 +8,14 @@ interface IUserInfoProps {
 }
 function UserInfo({ user }: IUserInfoProps) {
   return (
-    <div>
+    <section>
       <UserNameWithAvatar>
         {user.avatar_url && <Avatar src={user.avatar_url} alt='User avatar' width={70} height={70} />}
         <UserName>{user.name || user.login}</UserName>
       </UserNameWithAvatar>
 
       <Bio>{user.bio}</Bio>
-    </div>
+    </section>
   );
 }
 

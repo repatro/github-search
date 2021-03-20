@@ -9,10 +9,10 @@ const rotate = keyframes`
   }
 `;
 
-interface ISpinningIndicator {
+interface ISpinningIndicatorProps {
   size?: number;
 }
-const SpinningIndicator = styled.div<ISpinningIndicator>`
+const SpinningIndicator = styled.div<ISpinningIndicatorProps>`
   width: ${(props) => props.size || 14}px;
   height: ${(props) => props.size || 14}px;
   border-top: 3px solid #8888ff;
