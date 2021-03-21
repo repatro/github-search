@@ -6,7 +6,7 @@ import TextInput from './TextInput';
 import SpinningIndicator from './../styled/SpinningIndicator';
 
 interface IUserSearch {
-  isLoading: boolean;
+  isLoading?: boolean;
   onSearch(value: string): void;
 }
 function UserSearch({ isLoading, onSearch }: IUserSearch) {
@@ -14,9 +14,7 @@ function UserSearch({ isLoading, onSearch }: IUserSearch) {
 
   function handleSearch() {
     const trimmedInput = userInput.trim();
-    if (trimmedInput.length > 0) {
-      onSearch(trimmedInput);
-    }
+    onSearch(trimmedInput);
   }
 
   const isButtonDisabled = userInput.trim().length === 0 || isLoading;

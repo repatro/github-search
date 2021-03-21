@@ -5,7 +5,7 @@ import SpinningIndicator from '../styled/SpinningIndicator';
 
 interface ILoadingWrapperProps {
   children: ReactNode;
-  isLoading: boolean;
+  isLoading?: boolean;
   spinningIndicatorSize?: number;
   loadingHeight?: number;
   error?: string;
