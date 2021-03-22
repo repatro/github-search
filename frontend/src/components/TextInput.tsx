@@ -48,6 +48,7 @@ interface IInputProps {
 }
 const Input = styled.input<IInputProps>`
   flex-grow: 1;
+  width: 100px;
   border: none;
   background-color: transparent;
   padding-left: 10px;
